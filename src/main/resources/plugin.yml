@@ -1,0 +1,5 @@
+name: commandProxy
+main: Main
+version: '1.0.0'
+depend: [CommandAPI]
+website: https://github.com/loonybtard/commandProxy
