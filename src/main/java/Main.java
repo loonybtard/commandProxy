@@ -2,6 +2,9 @@ import io.github.jorelali.commandapi.api.CommandAPI;
 import io.github.jorelali.commandapi.api.arguments.Argument;
 import io.github.jorelali.commandapi.api.arguments.GreedyStringArgument;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.ProxiedCommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -52,6 +55,17 @@ public class Main extends JavaPlugin {
                 command.append(part);
             }
 
+
+            // check our target
+            if(sender instanceof ProxiedCommandSender){
+                CommandSender calee = ((ProxiedCommandSender) sender).getCallee();
+
+                // if its player
+                if(calee instanceof Player){
+                    // command will executed on its behalf
+                    sender = calee;
+                }
+            }
 
             sender.getServer().dispatchCommand(sender, command.toString());
 
