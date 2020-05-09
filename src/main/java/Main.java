@@ -19,6 +19,14 @@ public class Main extends JavaPlugin {
         register();
     }
 
+    @Override
+    public void onDisable() {
+
+        CommandAPI.getInstance().unregister("commandproxy");
+
+        super.onDisable();
+    }
+
     private String[] getAllCommands() {
 
         Plugin[] plugins = Bukkit.getPluginManager().getPlugins();
